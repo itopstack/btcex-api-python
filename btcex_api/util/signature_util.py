@@ -3,7 +3,8 @@ import hmac
 
 
 def signature_data(sign_data: str, secret: str):
-    sign_str = hmac.new(secret.encode('utf-8'), sign_data.encode('utf-8'), hashlib.sha256).hexdigest()
+    sign_str = hmac.new(secret.encode('utf-8'),
+                        sign_data.encode('utf-8'), hashlib.sha256).hexdigest()
     sign_result = to_hex_str(sign_str)
     return sign_result
 

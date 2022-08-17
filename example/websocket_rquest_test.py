@@ -4,7 +4,8 @@ import unittest
 
 from btcex_api.websocket_async import WebsocketAsync
 
-ws_async = WebsocketAsync(client_id='28e91afa', client_secret='***************')
+ws_async = WebsocketAsync(client_id='28e91afa',
+                          client_secret='***************')
 
 
 class BtcexTest(unittest.TestCase):
@@ -21,6 +22,7 @@ class BtcexTest(unittest.TestCase):
 if __name__ == '__main__':
     test_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)))
 
-    discover = unittest.defaultTestLoader.discover(test_dir, pattern="test*.py", top_level_dir=None)
+    discover = unittest.defaultTestLoader.discover(
+        test_dir, pattern="test*.py", top_level_dir=None)
     runner = unittest.TextTestRunner()
     runner.run(discover)
