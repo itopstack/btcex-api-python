@@ -64,6 +64,23 @@ class WebsocketClient(object):
                 response = await self.ws.recv()
                 await self.handle(response)
 
+    async def run_public(self):
+        while True:
+            try:
+                await self.receive_public_ws_message()
+            except Exception:
+                logging.error(traceback.format_exc())
+                await asyncio.sleep(5)
+
+    async def receive_public_ws_message(self):
+        logging.info('start call receive_public_ws_message')
+        async with websockets.connect(self.ws_url) as websocket:
+            asyncio.create_task(self.ping())
+            self.ws = websocket
+            while True:
+                response = await self.ws.recv()
+                await self.handle(response)
+
     async def handle(self, message):
         print(f'start handler message: {message}')
         pass
